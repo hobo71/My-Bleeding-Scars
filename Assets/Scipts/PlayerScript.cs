@@ -10,6 +10,6 @@ public class PlayerScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		// Aici se vor actualiza informatiile despre player
 	}
 }
