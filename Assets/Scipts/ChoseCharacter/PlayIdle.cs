@@ -9,7 +9,7 @@ public class PlayIdle : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        PlayerPrefs.SetString("PlayerType", null);
+        //PlayerPrefs.SetString("PlayerType", null);
     }
 	
 	// Update is called once per frame
