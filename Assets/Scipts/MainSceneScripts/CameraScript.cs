@@ -3,11 +3,15 @@ using System.Collections;
 
 /* Comment */
 public class CameraScript : MonoBehaviour {
+
     public float turningSpeed = 100f;
     GameObject player = null;
 
     public float height = 1.5f;
     public float distance = -2.5f;
+
+	public const float distMax = -2.5f;
+	public const float distMin = -0.5f;
 
     private Vector3 offsetX;
 
@@ -24,15 +28,13 @@ public class CameraScript : MonoBehaviour {
             Debug.Log("[CameraScript] Am gasit jucatorul");
         }
 	}
-
     void LateUpdate() {
 
         offsetX = Quaternion.AngleAxis(Input.GetAxis("Horizontal") * turningSpeed * Time.deltaTime, Vector3.up) * offsetX;
 
 		offsetX = Quaternion.AngleAxis(5 * Input.GetAxis("Mouse Y") * turningSpeed * Time.deltaTime, player.transform.right) * offsetX;
 
-        transform.position = player.transform.position + offsetX;
-
-        transform.LookAt(player.transform.position);
-    }
+		transform.position = player.transform.position + offsetX;
+		transform.LookAt(player.transform.position + new Vector3(0, 1, 0));
+   }
 }
