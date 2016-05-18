@@ -31,7 +31,11 @@ public class SpawnCharacter : MonoBehaviour {
 		if(playerObj != null)
 			playerObj.tag = "Player";
 		playerObj.gameObject.AddComponent<MovementScript>();
-		playerObj.AddComponent<BoxCollider> ();
+
+        BoxCollider playerCollider = playerObj.AddComponent<BoxCollider> ();
+        playerCollider.center = new Vector3(0, 0.5f, 0);
+        playerCollider.size = new Vector3(0.4f, 1f, 0.5f);
+
 		//playerObj.gameObject.AddComponent<PlayerScript>(); 
 
 	}
