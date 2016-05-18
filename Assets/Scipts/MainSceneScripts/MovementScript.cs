@@ -17,10 +17,11 @@ public class MovementScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
-		if(Input.GetKey(KeyCode.LeftShift))
-			translation = Input.GetAxis("Vertical") * max_speed;
-		else
-			translation = Input.GetAxis("Vertical") * speed;
+		if (Input.GetKey (KeyCode.LeftShift)) {
+			translation = Input.GetAxis ("Vertical") * max_speed;
+		} else {
+			translation = Input.GetAxis ("Vertical") * speed;
+		}
 
         if(translation != 0)
         {
