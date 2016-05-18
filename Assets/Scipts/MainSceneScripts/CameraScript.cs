@@ -10,6 +10,9 @@ public class CameraScript : MonoBehaviour {
     public float height = 1.5f;
     public float distance = -2.5f;
 
+	public const float minAngle = 30;
+	public const float maxAngle = 80;
+
     private Vector3 offsetX;
 
 	// Use this for initialization
@@ -40,7 +43,7 @@ public class CameraScript : MonoBehaviour {
 			float forwardCameraAngle = Vector3.Angle (cameraView, player.transform.forward);
 
 			/* Daca unghiul dintre normala si camera este in intervalul (30, 60) si camera este in spatele playerului */
-			if (upCameraAngle > 30 && upCameraAngle < 60 && forwardCameraAngle > 90)
+			if (upCameraAngle > minAngle && upCameraAngle < maxAngle && forwardCameraAngle > 90)
 				offsetX = cameraView;
 		}
 			

@@ -20,7 +20,7 @@ public class CommandUI : MonoBehaviour {
         quitButton.GetComponentInChildren<Text>().text = "Quit";
         quitButton.GetComponent<Button>().onClick.AddListener(Quit);
         */
-        GameObject errorMessage = GameObject.FindGameObjectWithTag("ErrorMessage");
+        GameObject errorMessage = GameObject.FindGameObjectWithTag("InfoMessage");
         errorMessage.gameObject.GetComponent<RectTransform>().localPosition = new Vector2(0, (Screen.height / 2) - 100);
         errorMessage.GetComponentInChildren<Text>().text = "";
     }
@@ -28,7 +28,7 @@ public class CommandUI : MonoBehaviour {
     void Play()
     {
         Debug.Log("[PlayButton] Clicked");
-        GameObject errorMessage = GameObject.FindGameObjectWithTag("ErrorMessage");
+        GameObject errorMessage = GameObject.FindGameObjectWithTag("InfoMessage");
 		Debug.Log (PlayerPrefs.GetString ("PlayerType"));
 
 		if (PlayerPrefs.GetString("PlayerType").Equals(""))
