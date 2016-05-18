@@ -13,7 +13,7 @@ public class PlayIdle : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         //PlayerPrefs.SetString("PlayerType", null);
-		message = GameObject.FindGameObjectWithTag("ErrorMessage");
+		message = GameObject.FindGameObjectWithTag("InfoMessage");
 		PlayerPrefs.SetString("PlayerType", "");
     }
 	
@@ -22,10 +22,10 @@ public class PlayIdle : MonoBehaviour {
     {
 		if (Time.realtimeSinceStartup - clickTime > animTime) {
 			GetComponent<Animation> ().CrossFade ("idle");
-			string text = message.GetComponentInChildren<Text> ().text;
+			//string text = message.GetComponentInChildren<Text> ().text;
 
-			if(text.Equals(playerName + " selected!"))
-				message.GetComponentInChildren<Text>().text = "";
+			//if(text.Equals(playerName + " selected!"))
+				//message.GetComponentInChildren<Text>().text = "";
 		}
 	}
 

@@ -6,7 +6,6 @@ public class MovementScript : MonoBehaviour {
 	public float max_speed = 8.0F;
     public float rotationSpeed = 100.0F;
 	private float translation = 0.0F;
-
     public float clickTime;
     // Use this for initialization
     void Start () {
