@@ -32,7 +32,14 @@ public class CameraScript : MonoBehaviour {
 
         offsetX = Quaternion.AngleAxis(Input.GetAxis("Horizontal") * turningSpeed * Time.deltaTime, Vector3.up) * offsetX;
 
-		offsetX = Quaternion.AngleAxis(5 * Input.GetAxis("Mouse Y") * turningSpeed * Time.deltaTime, player.transform.right) * offsetX;
+
+		Vector3 cameraView = Quaternion.AngleAxis (Input.GetAxis ("Mouse Y") * turningSpeed * Time.deltaTime, player.transform.right) * offsetX;
+		float upCameraAngle = Vector3.Angle (cameraView, player.transform.up);
+		float forwardCameraAngle = Vector3.Angle (cameraView, player.transform.forward);
+		if( upCameraAngle > 30 && upCameraAngle < 60 && forwardCameraAngle > 90)
+			offsetX = cameraView;
+
+
 
 		transform.position = player.transform.position + offsetX;
 		transform.LookAt(player.transform.position + new Vector3(0, 1, 0));
