@@ -29,13 +29,15 @@ public class CommandUI : MonoBehaviour {
     {
         Debug.Log("[PlayButton] Clicked");
         GameObject errorMessage = GameObject.FindGameObjectWithTag("ErrorMessage");
-        if (PlayerPrefs.GetString("PlayerType").Equals(""))
+		Debug.Log (PlayerPrefs.GetString ("PlayerType"));
+
+		if (PlayerPrefs.GetString("PlayerType").Equals(""))
         {
             errorMessage.GetComponentInChildren<Text>().text = "Please select character!";
             return;
         }
         // TODO incarca scena urmatoare
-        SceneManager.LoadScene(1);
+       SceneManager.LoadScene(1);
     }
 
     void Quit()

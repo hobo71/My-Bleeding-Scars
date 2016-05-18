@@ -10,9 +10,6 @@ public class CameraScript : MonoBehaviour {
     public float height = 1.5f;
     public float distance = -2.5f;
 
-	public const float distMax = -2.5f;
-	public const float distMin = -0.5f;
-
     private Vector3 offsetX;
 
 	// Use this for initialization
@@ -32,15 +29,21 @@ public class CameraScript : MonoBehaviour {
 
         offsetX = Quaternion.AngleAxis(Input.GetAxis("Horizontal") * turningSpeed * Time.deltaTime, Vector3.up) * offsetX;
 
+		/* Camera se va roti cu mouseul doar la click dreata */
+		if (Input.GetMouseButton (1)) {
+			Vector3 cameraView = Quaternion.AngleAxis (Input.GetAxis ("Mouse Y"), player.transform.right) * offsetX;
 
-		Vector3 cameraView = Quaternion.AngleAxis (Input.GetAxis ("Mouse Y") * turningSpeed * Time.deltaTime, player.transform.right) * offsetX;
-		float upCameraAngle = Vector3.Angle (cameraView, player.transform.up);
-		float forwardCameraAngle = Vector3.Angle (cameraView, player.transform.forward);
-		if( upCameraAngle > 30 && upCameraAngle < 60 && forwardCameraAngle > 90)
-			offsetX = cameraView;
+			/* Unghiul dintre normala playerului si camera */
+			float upCameraAngle = Vector3.Angle (cameraView, player.transform.up);
 
+			/* Unghiul dintre directia de privire a playerului si camera */
+			float forwardCameraAngle = Vector3.Angle (cameraView, player.transform.forward);
 
-
+			/* Daca unghiul dintre normala si camera este in intervalul (30, 60) si camera este in spatele playerului */
+			if (upCameraAngle > 30 && upCameraAngle < 60 && forwardCameraAngle > 90)
+				offsetX = cameraView;
+		}
+			
 		transform.position = player.transform.position + offsetX;
 		transform.LookAt(player.transform.position + new Vector3(0, 1, 0));
    }

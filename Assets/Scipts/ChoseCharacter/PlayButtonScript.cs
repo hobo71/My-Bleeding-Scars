@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class PlayButtonScript : MonoBehaviour {
 
+	/*
 	void onClick()
 	{
         Debug.Log("[PlayButton] Clicked");
@@ -16,4 +17,5 @@ public class PlayButtonScript : MonoBehaviour {
         // TODO incarca scena urmatoare
 
     }
+    */
 }
