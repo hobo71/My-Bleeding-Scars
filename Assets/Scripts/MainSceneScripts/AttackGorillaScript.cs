@@ -5,7 +5,7 @@ public class AttackGorillaScript : MonoBehaviour {
 
 	public int gorillaId;
 	float health;
-	float jumpHeight = 0.1f;
+	float jumpHeight = 1.3f;
 
 	float jumpTime;
 	float updTime;
@@ -28,12 +28,15 @@ public class AttackGorillaScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		// fa gorila sa sara
+		// TODO as putea sa o fac sa se miste intre spawner si player mea ca sa para mai real
 		if (Time.realtimeSinceStartup - jumpTime > updTime) {
 			jumpTime = Time.realtimeSinceStartup;
 			gameObject.GetComponent<Rigidbody>().velocity = new Vector3(0, jumpHeight, 0);
 			jumpHeight = -jumpHeight;
 		}
 
+		// Fa gorila sa se uite la player
+		gameObject.transform.LookAt (player.transform.position);
 
 		if (player != null) {
 			float distance = Vector3.Distance (gameObject.transform.position, player.transform.position);
@@ -66,7 +69,7 @@ public class AttackGorillaScript : MonoBehaviour {
 
 			if (distance < attackDistance) {
 				Debug.Log ("Gorila " + gorillaId + " a luat dammage de la player");
-				getDammage (100);
+				getDammage (50);
 			}
 		}
 	}
