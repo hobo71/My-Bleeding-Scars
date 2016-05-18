@@ -7,6 +7,7 @@ public class SpawnCharacter : MonoBehaviour {
 	public GameObject magePrefab;
 	public GameObject freshPrefab;
 	public GameObject darkPrefab;
+	public GameObject spawnSpot;
 
 	private GameObject playerObj;
 
@@ -14,14 +15,16 @@ public class SpawnCharacter : MonoBehaviour {
 	void Start () {
 		string charType = PlayerPrefs.GetString("PlayerType");
 
+		spawnSpot = GameObject.FindGameObjectWithTag("CharacterSpawner");
+
 		if (charType.Equals ("Normal")) {
-			playerObj = (GameObject)Instantiate (normalPrefab, new Vector3 (0, 0, 0), Quaternion.identity);
+			playerObj = (GameObject)Instantiate (normalPrefab, spawnSpot.transform.position, spawnSpot.transform.rotation);
 		} else if (charType.Equals ("Mage")) {
-			playerObj = (GameObject)Instantiate (magePrefab, new Vector3 (0, 0, 0), Quaternion.identity);
+			playerObj = (GameObject)Instantiate (magePrefab,  spawnSpot.transform.position, spawnSpot.transform.rotation);
 		} else if (charType.Equals ("Fresh")) {
-			playerObj = (GameObject)Instantiate (freshPrefab, new Vector3 (0, 0, 0), Quaternion.identity);
+			playerObj = (GameObject)Instantiate (freshPrefab,  spawnSpot.transform.position, spawnSpot.transform.rotation);
 		} else if (charType.Equals ("Dark")) {
-			playerObj = (GameObject)Instantiate (darkPrefab, new Vector3 (0, 0, 0), Quaternion.identity);
+			playerObj = (GameObject)Instantiate (darkPrefab,  spawnSpot.transform.position, spawnSpot.transform.rotation);
 		} else
 			playerObj = null;
 
