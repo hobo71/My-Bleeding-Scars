@@ -22,10 +22,6 @@ public class PlayIdle : MonoBehaviour {
     {
 		if (Time.realtimeSinceStartup - clickTime > animTime) {
 			GetComponent<Animation> ().CrossFade ("idle");
-			//string text = message.GetComponentInChildren<Text> ().text;
-
-			//if(text.Equals(playerName + " selected!"))
-				//message.GetComponentInChildren<Text>().text = "";
 		}
 	}
 
