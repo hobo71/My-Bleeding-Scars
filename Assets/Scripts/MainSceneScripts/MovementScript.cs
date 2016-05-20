@@ -30,7 +30,7 @@ public class MovementScript : MonoBehaviour {
         {
             if (Input.GetMouseButtonDown(0))
             {
-                Debug.Log("Pressed left click.");
+                //Debug.Log("Pressed left click.");
                 GetComponent<Animation>().Play("attack");
                 clickTime = Time.realtimeSinceStartup;
             }

@@ -9,7 +9,7 @@ public class AttackGorillaScript : MonoBehaviour {
 
 	float jumpTime;
 	float updTime;
-	float attackDistance = 1.0f;
+	float attackDistance = 2.0f;
 	GameObject player;
 
 
@@ -49,6 +49,7 @@ public class AttackGorillaScript : MonoBehaviour {
 
 		// Daca health a ajuns la 0 distruge gorila
 		if (health <= 0) {
+            Debug.Log("Gorila " + gorillaId + " died");
 			GameObject spawner = GameObject.FindGameObjectWithTag("MonsterSpawner");
 			spawner.GetComponent<MonsterSpawnerScript> ().setDestroyTime (Time.realtimeSinceStartup, gorillaId);
 			Destroy (gameObject);
@@ -62,14 +63,14 @@ public class AttackGorillaScript : MonoBehaviour {
 
 	void OnMouseDown()
 	{
-		Debug.Log ("Click pe gorila");
+		Debug.Log ("Click pe gorila " + gorillaId + ".Health: " + health);
 		// nu lua dammage de la player daca nu e in range-ul tau
 		if (player != null) {
 			float distance = Vector3.Distance (gameObject.transform.position, player.transform.position);
 
 			if (distance < attackDistance) {
 				Debug.Log ("Gorila " + gorillaId + " a luat dammage de la player");
-				getDammage (50);
+				getDammage (100);
 			}
 		}
 	}
