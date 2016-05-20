@@ -56,22 +56,23 @@ public class AttackGorillaScript : MonoBehaviour {
 		}
 	}
 
-	public void getDammage(float dammage)
+	public void getDammage()
 	{
-		health -= dammage;
-	}
+        float damage = player.GetComponent<PlayerScript>().attackDamage; ;
+        health -= damage;
+        Debug.Log("Gorila " + gorillaId + " a luat " + damage + " de la player");
+    }
 
 	void OnMouseDown()
 	{
 		Debug.Log ("Click pe gorila " + gorillaId + ".Health: " + health);
 		// nu lua dammage de la player daca nu e in range-ul tau
-		if (player != null) {
+		if (player != null)
+        {
 			float distance = Vector3.Distance (gameObject.transform.position, player.transform.position);
 
-			if (distance < attackDistance) {
-				Debug.Log ("Gorila " + gorillaId + " a luat dammage de la player");
-				getDammage (100);
-			}
+			if (distance < attackDistance) 				
+				getDammage ();			
 		}
 	}
 }

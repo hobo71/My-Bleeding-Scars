@@ -11,10 +11,18 @@ public class PlayerScript : MonoBehaviour {
     public float crtHealth;
     public int crtExp;
     public int crtLevel;
+    public float attackDamage;
+
+    public GameObject target;
 
 	// Use this for initialization
 	void Start () {
-	    // Aici se va scrie initializarea :P
+        // Aici se va scrie initializarea :P
+        crtLevel = 1;
+        crtExp = 0;
+        crtHealth = maxHealth;
+        attackDamage = 10.0f;
+        //GameObject target = null;
 	}
 	
 	// Update is called once per frame
@@ -25,7 +33,18 @@ public class PlayerScript : MonoBehaviour {
 
     void OnGUI()
     {
+        GUI.skin = guiSkin;
+        GUI.skin.textField.fontSize = 20;
 
+        GUILayout.TextField("Level: " + crtLevel);
+        GUILayout.TextField("Health: " + (int)crtHealth  + "/" + (int)maxHealth, 100);
+        GUILayout.TextField("Exp: " + (int)crtExp + "/" + (int)maxExp, 100);
+
+        if (target != null)
+        {
+            // TODO get Health
+            //GUILayout.TextField();
+        }
     }
 
 
@@ -39,8 +58,12 @@ public class PlayerScript : MonoBehaviour {
                 crtExp = maxExp - crtExp;
                 maxExp += (int)(0.75f * maxExp);
                 crtLevel++;
-
             }
         }
+    }
+
+    public void setTarget(GameObject target)
+    {
+
     }
 }

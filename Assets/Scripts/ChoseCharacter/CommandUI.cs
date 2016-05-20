@@ -9,17 +9,6 @@ public class CommandUI : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        /*
-        GameObject button = GameObject.FindGameObjectWithTag("PlayButton");
-        button.gameObject.GetComponent<RectTransform>().localPosition = new Vector2(0, -((Screen.height / 2) - 50));
-        button.GetComponentInChildren<Text>().text = "Play";
-        //button.GetComponent<Button>().onClick.AddListener(onClick);
-
-        GameObject quitButton = GameObject.FindGameObjectWithTag("QuitButton");
-        quitButton.gameObject.GetComponent<RectTransform>().localPosition = new Vector2((Screen.width / 2) - 100, -((Screen.height / 2) - 50));
-        quitButton.GetComponentInChildren<Text>().text = "Quit";
-        quitButton.GetComponent<Button>().onClick.AddListener(Quit);
-        */
         GameObject errorMessage = GameObject.FindGameObjectWithTag("InfoMessage");
         errorMessage.gameObject.GetComponent<RectTransform>().localPosition = new Vector2(0, (Screen.height / 2) - 100);
         errorMessage.GetComponentInChildren<Text>().text = "";
