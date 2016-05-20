@@ -33,8 +33,7 @@ public class MonsterSpawnerScript : MonoBehaviour {
 		for (int i = 0; i < nrInamici; i++) {
 			if (inamici [i] == null) {
 				if (Time.realtimeSinceStartup - destroyTime [i] > 5) {
-					Quaternion rotation = Random.rotation;
-					rotation.x = 0; rotation.z = 0;
+					Quaternion rotation = Quaternion.identity;
 					inamici [i] = (GameObject)Instantiate (gorilla, new Vector3 (Random.Range (minX, maxX), 0, Random.Range (minZ, maxZ)), rotation);
 					inamici [i].GetComponent<AttackGorillaScript>().gorillaId = i;
 				}
