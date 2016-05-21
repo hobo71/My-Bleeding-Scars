@@ -8,6 +8,7 @@ public class SpawnCharacter : MonoBehaviour {
 	public GameObject freshPrefab;
 	public GameObject darkPrefab;
 	public GameObject spawnSpot;
+    public GameObject minimapCamera;
 
 	private GameObject playerObj;
 

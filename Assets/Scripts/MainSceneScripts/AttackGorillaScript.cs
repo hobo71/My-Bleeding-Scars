@@ -56,7 +56,7 @@ public class AttackGorillaScript : MonsterScript {
 
 		// Daca health a ajuns la 0 distruge gorila
 		if (crtHealth <= 0) {
-            playerScript.giveExp(level * 10 + 2);
+            playerScript.giveExp((int) crtLevel * 10 + 2);
             Debug.Log("Gorila " + gorillaId + " died");
 			GameObject spawner = GameObject.FindGameObjectWithTag("MonsterSpawner");
 			spawner.GetComponent<MonsterSpawnerScript> ().setDestroyTime (Time.realtimeSinceStartup, gorillaId);

@@ -6,10 +6,7 @@ public class PlayerScript : MonsterScript
     public GUISkin guiSkin;
 
     public int maxExp = 100;
-    public int maxLevel = 20;
-
     public int crtExp;
-    public int crtLevel;
 
     public GameObject target;
 
@@ -44,7 +41,7 @@ public class PlayerScript : MonsterScript
                 float targetMaxHealth = _monsterScript.maxHealth;
                 float targetCrtHealth = _monsterScript.crtHealth;
 
-                int targetLevel = _monsterScript.level;
+                int targetLevel = _monsterScript.crtLevel;
 
                 GUILayout.TextField("Level: " + targetLevel);
                 GUILayout.TextField("Health: " + (int)targetCrtHealth + "/" + (int)targetMaxHealth, 100);
@@ -61,7 +58,7 @@ public class PlayerScript : MonsterScript
         {
             if (crtExp > maxExp)
             {
-                crtExp = maxExp - crtExp;
+                crtExp = crtExp - maxExp;
                 maxExp += (int)(0.75f * maxExp);
                 crtLevel++;
 

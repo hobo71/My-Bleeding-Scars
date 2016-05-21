@@ -5,7 +5,8 @@ public class MonsterScript : MonoBehaviour {
     public float maxHealth;
     public float crtHealth;
 
-    public int level;
+    public int maxLevel;
+    public int crtLevel;
     public int attackPower;
 
     public float healthRegenRate;
@@ -17,7 +18,8 @@ public class MonsterScript : MonoBehaviour {
         crtHealth = 100;
         healthRegenRate = 0.2f;
 
-        level = 1;
+        maxLevel = 20;
+        crtLevel = 1;
         attackPower = 10;
 
         isAttacked = false;
