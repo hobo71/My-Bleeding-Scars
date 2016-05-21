@@ -10,13 +10,18 @@ public class AttackGorillaScript : MonsterScript {
 	float jumpTime;
 	float updTime;
 	float attackDistance = 2.0f;
-	GameObject player;
+	GameObject player, spawner;
     PlayerScript playerScript;
 	const float animTime = 1.2f;
 
 	float damageTime;
 	float atackTime;
 	const float coolDown = 1.0f;
+
+	float moveTime;
+	const float movingAt = 3.0f;
+
+	Vector3 translateDirection;
 
     public AttackGorillaScript() : base()
     {
@@ -33,10 +38,12 @@ public class AttackGorillaScript : MonsterScript {
 
 		//obtine id-ul playerului si verifica distanta si daca e mai mica de x ataca-l
 		player = GameObject.FindGameObjectWithTag("Player");
+		spawner = GameObject.FindGameObjectWithTag ("MonsterSpawner");
         playerScript = player.gameObject.GetComponent<PlayerScript>();
 
 		atackTime = Time.realtimeSinceStartup;
 		damageTime = Time.realtimeSinceStartup;
+		moveTime = Time.realtimeSinceStartup;
 	}
 	
 	// Update is called once per frame
@@ -51,6 +58,18 @@ public class AttackGorillaScript : MonsterScript {
 
 		// Fa gorila sa se uite la player
 		gameObject.transform.LookAt (player.transform.position);
+
+
+		// Fa gorila sa se miste random
+		if (Time.realtimeSinceStartup - moveTime > movingAt) {
+			Vector2 Temp = Random.insideUnitCircle;
+			float tempDistance = Random.Range (0, 10);
+			Temp = Temp * tempDistance;
+			translateDirection = new Vector3 (Temp.x, 0, Temp.y);
+			moveTime = Time.realtimeSinceStartup;
+		}
+
+		gameObject.transform.Translate(translateDirection * Time.deltaTime);
 
 		if (player != null) {
 			float distance = Vector3.Distance (gameObject.transform.position, player.transform.position);
