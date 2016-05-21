@@ -1,34 +1,27 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerScript : MonoBehaviour {
+public class PlayerScript : MonsterScript
+{
     public GUISkin guiSkin;
 
-    public float maxHealth = 100f;
     public int maxExp = 100;
     public int maxLevel = 20;
 
-    public float crtHealth;
     public int crtExp;
     public int crtLevel;
-    public float attackDamage;
 
     public GameObject target;
 
 	// Use this for initialization
 	void Start () {
         // Aici se va scrie initializarea :P
-        crtLevel = 1;
         crtExp = 0;
-        crtHealth = maxHealth;
-        attackDamage = 10.0f;
-        //GameObject target = null;
+        target = null;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        Evolve();
-
 	}
 
     void OnGUI()
@@ -40,11 +33,24 @@ public class PlayerScript : MonoBehaviour {
         GUILayout.TextField("Health: " + (int)crtHealth  + "/" + (int)maxHealth, 100);
         GUILayout.TextField("Exp: " + (int)crtExp + "/" + (int)maxExp, 100);
 
+        /* Display Target Health and level */
+        GUILayout.BeginArea(new Rect(200, 0, 200, 100));
         if (target != null)
         {
             // TODO get Health
-            //GUILayout.TextField();
+            MonsterScript _monsterScript = target.gameObject.GetComponent<MonsterScript>();
+            if (_monsterScript != null)
+            {
+                float targetMaxHealth = _monsterScript.maxHealth;
+                float targetCrtHealth = _monsterScript.crtHealth;
+
+                int targetLevel = _monsterScript.level;
+
+                GUILayout.TextField("Level: " + targetLevel);
+                GUILayout.TextField("Health: " + (int)targetCrtHealth + "/" + (int)targetMaxHealth, 100);
+            }
         }
+        GUILayout.EndArea();
     }
 
 
@@ -58,12 +64,32 @@ public class PlayerScript : MonoBehaviour {
                 crtExp = maxExp - crtExp;
                 maxExp += (int)(0.75f * maxExp);
                 crtLevel++;
+
+                maxHealth += (0.38f * maxHealth);
+                crtHealth = maxHealth;
             }
         }
     }
 
     public void setTarget(GameObject target)
     {
+        this.target = target;
+    }
 
+    public void giveExp(int exp)
+    {
+        crtExp += exp;
+        // Verifica daca a trecut la urmatorul nivel
+        Evolve();
+    }
+
+    public void Attack()
+    {
+        isAttacked = true;
+    }
+
+    public void StopAttacking()
+    {
+        isAttacked = false;
     }
 }

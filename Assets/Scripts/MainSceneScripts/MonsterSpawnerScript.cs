@@ -26,9 +26,6 @@ public class MonsterSpawnerScript : MonoBehaviour {
 
 		inamici = new GameObject[nrInamici];
 		destroyTime = new float[nrInamici];
-
-        for (int i = 0; i < nrInamici; i++)
-            destroyTime[i] = 31; // Sa apara imediat creaturile
 	}
 	
 	// Update is called once per frame
@@ -39,7 +36,7 @@ public class MonsterSpawnerScript : MonoBehaviour {
             // Respawneaza elementele moarte la fiecare 30 de seconunde
 			if (inamici [i] == null)
             {
-				if (Time.realtimeSinceStartup - destroyTime [i] > 30)
+				if (Time.realtimeSinceStartup - destroyTime [i] > 2)
                 {
 					Quaternion rotation = Quaternion.identity;
 					inamici [i] = (GameObject)Instantiate (gorilla, new Vector3 (Random.Range (minX, maxX), 0, Random.Range (minZ, maxZ)), rotation);

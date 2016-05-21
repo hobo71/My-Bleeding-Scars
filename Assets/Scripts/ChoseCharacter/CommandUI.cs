@@ -43,7 +43,6 @@ public class CommandUI : MonoBehaviour {
         const int buttonWidth = 150;
         const int buttonHeight = 70;
 
-
         GUILayout.BeginArea(new Rect((Screen.width / 2) - (buttonWidth / 2), Screen.height - buttonHeight - 20, buttonWidth, buttonHeight));
         if (GUILayout.Button("Play", GUILayout.Width(buttonWidth), GUILayout.Height(buttonHeight)))
         {
