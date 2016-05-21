@@ -5,13 +5,18 @@ public class AttackGorillaScript : MonsterScript {
 
 	public int gorillaId;
 
-	float jumpHeight = 1.3f;
+	float jumpHeight = 3.5f;
 
 	float jumpTime;
 	float updTime;
 	float attackDistance = 2.0f;
 	GameObject player;
     PlayerScript playerScript;
+	const float animTime = 1.2f;
+
+	float damageTime;
+	float atackTime;
+	const float coolDown = 1.0f;
 
     public AttackGorillaScript() : base()
     {
@@ -29,6 +34,9 @@ public class AttackGorillaScript : MonsterScript {
 		//obtine id-ul playerului si verifica distanta si daca e mai mica de x ataca-l
 		player = GameObject.FindGameObjectWithTag("Player");
         playerScript = player.gameObject.GetComponent<PlayerScript>();
+
+		atackTime = Time.realtimeSinceStartup;
+		damageTime = Time.realtimeSinceStartup;
 	}
 	
 	// Update is called once per frame
@@ -47,10 +55,13 @@ public class AttackGorillaScript : MonsterScript {
 		if (player != null) {
 			float distance = Vector3.Distance (gameObject.transform.position, player.transform.position);
 
-			if (distance < attackDistance) {
-				// Todo apeleaza metoda de getDammage de la player (care o fi aia :)) )
-                // Todo adauga cooldown intre atacuri (sa nu atace de la 60 de ori pe secunda, ca ne face praf) 
-				Debug.Log ("Gorila " + gorillaId + " ataca playerul");
+			if (Time.realtimeSinceStartup - damageTime > coolDown) {
+				damageTime = Time.realtimeSinceStartup;
+				if (distance < attackDistance) {
+					// Todo apeleaza metoda de getDammage de la player (care o fi aia :)) )
+					// Todo adauga cooldown intre atacuri (sa nu atace de la 60 de ori pe secunda, ca ne face praf) 
+					Debug.Log ("Gorila " + gorillaId + " ataca playerul");
+				}
 			}
 		}
 
@@ -80,8 +91,12 @@ public class AttackGorillaScript : MonsterScript {
         {
 			float distance = Vector3.Distance (gameObject.transform.position, player.transform.position);
 
-			if (distance < attackDistance) 				
-				getDammage();			
+			if (Time.realtimeSinceStartup - atackTime > animTime) {
+				atackTime = Time.realtimeSinceStartup;
+				if (distance < attackDistance) {
+					getDammage ();
+				}
+			}
 		}
 	}
 }
